@@ -1,10 +1,16 @@
 module Kolekti {
 
-  sequence<string> MetricOutput;
+  sequence<string> MetricNames;
   sequence<string> Arguments;
+  struct MetricResult {
+    string stdout;
+    string stderr;
+    int    rc;
+    float  duration;
+  };
 
   interface MetricProducer {
-    MetricOutput listMetrics();
-    string getMetric(string name, Arguments args);
+    MetricNames listMetrics();
+    MetricResult getMetric(string name, Arguments args);
   };
 };
